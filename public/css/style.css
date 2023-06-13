@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;1,500&family=Open+Sans:wght@400;600&display=swap');
+
+* {
+  color: black;
+  font-family: 'Open Sans', sans-serif;
+  text-decoration: none;
+  list-style-type: none;
+  box-sizing: border-box;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+header, main {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+/* Style text */
+h1 {
+  font-size: 32px;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+/* h3 {
+  font-size: 18px;
+} */
+
+button {
+  font-size: 18px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 10vw;
+  padding: 1em;
+}
+
+
+header {
+  font-family: 'Montserrat', sans-serif;
+}
+
+header div {
+  width: 30vw;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header img {
+  width: 10vw;
+}
+
+header .not-active {
+  color: #E8E8E8;
+}
+
+main {
+  background-color: #F6F6F6;
+}
+
+main div {
+  margin-bottom: 2em;
+}
+
+.create {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(21em, 1fr));
+}
+
+.borange {
+  background-color: #EB5440;
+}
+
+.bgrey {
+  background-color: #C3C3C3;
+}
+
+.listings li {
+  background-color: white;
+  border-radius: 5px;
+  /* width: 60vw; */
+  /* margin-left: auto;
+  margin-right: auto; */
+  margin-bottom: 16px;
+
+  display: flex;
+  align-items: center;
+}
+
+
+
+
+.house-item {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-decoration: line-through;
+}
+
+.item-property {
+  display: flex;
+  margin-bottom: 5px;
+  color: red;
+}
+
+.property-value {
+  font-weight: normal;
+  color: blue;
+}
+
+/* Custom styles for the house item layout */
+.house-item-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+
+.house-item-image {
+  grid-column: 1 / 2;
+}
+
+.house-item-image img{
+  width: 10vw;
+}
+
+.house-item-details {
+  grid-column: 2 / 3;
+}
