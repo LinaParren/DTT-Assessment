@@ -1,18 +1,8 @@
-# DTTAssess_LinaParren
+# DTT Assessment
 
-YO! This is a test.
-Another test lol.
-So it works?
+## Assessment info
 
-This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
@@ -20,25 +10,58 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Compile 
 
 ```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
-
-
-
-
 npm run dev -- --port 8080
+```
+
+## Hour Log
+
+<table>
+  <tr>
+    <th>What has been done?</th>
+    <th>Time needed</th>
+    <th>Date</th>
+  </tr>
+  <tr>
+    <td>Preparations</td>
+    <td>0,5</td>
+    <td>13/06/2023</td>
+  </tr>
+  <tr>
+    <td>Lay-out</td>
+    <td>1</td>
+    <td>13/06/2023</td>
+  </tr>
+  <tr>
+    <td>Fetching API</td>
+    <td>1,25</td>
+    <td>13/06/2023</td>
+  </tr>
+  <tr>
+    <td>Fetching and styling API</td>
+    <td>1</td>
+    <td>13/06/2023</td>
+  </tr>
+  <tr>
+    <td>General styling</td>
+    <td>0,25</td>
+    <td>13/06/2023</td>
+  </tr>
+  <tr>
+    <td>Finish the overview of houses <br> (All retrieved info displayed corretly and with styling) </td>
+    <td>1</td>
+    <td>14/06/2023</td>
+  </tr>
+  <tr>
+    <td>Add Edit + Delete button</td>
+    <td>0,5</td>
+    <td>14/06/2023</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>5,5</td>
+    <td></td>
+  </tr>
+</table>
