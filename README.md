@@ -1,6 +1,4 @@
-# DTTAssess_LinaParren
-
-This template should help get you started developing with Vue 3 in Vite.
+# DTT Assessment
 
 ## Assessment info
 
@@ -22,9 +20,9 @@ npm run dev -- --port 8080
 
 <table>
   <tr>
-    <th>What</th>
-    <th>Date</th>
+    <th>What has been done?</th>
     <th>Time needed</th>
+    <th>Date</th>
   </tr>
   <tr>
     <td>Preparations</td>
@@ -60,5 +58,10 @@ npm run dev -- --port 8080
     <td>Add Edit + Delete button</td>
     <td>0,5</td>
     <td>14/06/2023</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>5,5</td>
+    <td></td>
   </tr>
 </table>
