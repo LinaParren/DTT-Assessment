@@ -60,8 +60,13 @@ npm run dev -- --port 8080
     <td>14/06/2023</td>
   </tr>
   <tr>
+    <td>General styling</td>
+    <td>0,5</td>
+    <td>19/06/2023</td>
+  </tr>
+  <tr>
     <td></td>
-    <td>5,5</td>
+    <td>6</td>
     <td></td>
   </tr>
 </table>

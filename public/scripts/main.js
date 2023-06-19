@@ -42,11 +42,8 @@ fetch("https://api.intern.d-tt.nl/api/houses", requestOptions)
             listItem.classList.add('house-item');
 
             const houseImage = document.createElement('div');
-            houseImage.classList.add('house-item-content');
-
-            const Image = document.createElement('div');
-            Image.classList.add('house-image');
-            Image.innerHTML = `
+            houseImage.classList.add('house-image');
+            houseImage.innerHTML = `
             <img src="${image}" alt="Image of the house">
             `;
 
@@ -101,7 +98,6 @@ fetch("https://api.intern.d-tt.nl/api/houses", requestOptions)
                 `;
             }
 
-            houseImage.appendChild(Image);
             houseInfo.appendChild(streetName);
             houseInfo.appendChild(priceHouse);
             houseInfo.appendChild(addressHouse);
@@ -112,7 +108,6 @@ fetch("https://api.intern.d-tt.nl/api/houses", requestOptions)
             listItem.appendChild(houseInfo);
             listItem.appendChild(houseModify);
             housesList.appendChild(listItem);
-
 
         });
     })

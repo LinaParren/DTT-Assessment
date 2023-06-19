@@ -19,7 +19,7 @@ main {
 /* Style text */
 h1 {
   font-size: 32px;
-  margin-top: 32px;
+  margin-top: 16px;
   margin-bottom: 16px;
   font-weight: bold;
 }
@@ -37,8 +37,12 @@ button {
   color: white;
   border: none;
   border-radius: 5px;
-  width: 10vw;
-  padding: 1em;
+  /* width: 10vw; */
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 56px;
+  padding-right: 56px;
+  height: 56px;
 }
 
 
@@ -74,11 +78,22 @@ main {
 .create {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding-top: 32px;
 }
 
 .search {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(21em, 1fr));
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(21em, 1fr)); */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.search p {
+  width: 30%;
 }
 
 .borange {
@@ -89,6 +104,10 @@ main {
   background-color: #C3C3C3;
 }
 
+.listings {
+  margin-top: 32px;
+}
+
 .listings li {
   font-family: 'Open Sans', sans-serif;
   background-color: white;
@@ -97,10 +116,12 @@ main {
   margin-bottom: 16px;
   display: flex;
   align-items: center;
-  
+  margin-left: 0;
 }
 
-
+#overview {
+  padding: 0;
+}
 
 /* li */
 .house-item {
@@ -108,14 +129,10 @@ main {
   padding: 16px;
 }
 
-/* div */
-.house-item-content {
-  display: flex;
+/* de div met de img */
+.house-image {
+  width: 15%;
 }
-
-/* img */
-/* .house-image {
-} */
 
 .house-image img {
   margin-right: 16px;
@@ -125,11 +142,25 @@ main {
   border-radius: 8px;
 }
 
-/* div info */
+/* de div met de adress etc. */
 .house-info {
-  width: 13vw;
+  width: 20%;
 }
 
+/* de div met edit */
+.house-modify {
+  width: 65%;
+  display: flex;
+  justify-content: end;
+}
+
+.house-modify img {
+  width: 20px;
+  margin-right: 16px;
+}
+
+
+/* div info straat etc*/
 .house-streetname {
   font-weight: bold;
   display: flex;
@@ -147,6 +178,7 @@ main {
   margin-bottom: 16px;
 }
 
+/* div info kamers etc*/
 .house-details {
   color: #4A4B4C;
   display: flex;
@@ -157,20 +189,4 @@ main {
 .house-details img {
   width: 16px;
   height: 16px;
-}
-
-.house-modify {
-  display: flex;
-  flex-direction: row;
-  /* position: relative;
-  right: 0; */
-  /* align-items: top; */
-}
-
-.house-modify img {
-  width: 10px;
-  /* position: relative;
-  right: 0; */
-  display: flex;
-  align-items: flex-start;
 }
