@@ -71,6 +71,10 @@ main {
   background-color: #F6F6F6;
 }
 
+main .page_edit {
+  background-color: blue;
+}
+
 /* main div {
   margin-bottom: 2em;
 } */
@@ -154,7 +158,11 @@ main {
   justify-content: end;
 }
 
-.house-modify img {
+.house-edit-button {
+  width: 20px;
+  margin-right: 16px;
+}
+.house-delete-button {
   width: 20px;
   margin-right: 16px;
 }
@@ -189,4 +197,73 @@ main {
 .house-details img {
   width: 16px;
   height: 16px;
+}
+
+
+
+
+
+
+
+.page_edit {
+  margin-top: 32px;
+  font-family: 'Open Sans', sans-serif;
+  background: url(../images/img_background@3x.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 16px;
+}
+
+.page_edit .back {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 32px;
+}
+
+.page_edit img {
+  width: 16px;
+}
+
+#editForm {
+  font-family: 'Open Sans', sans-serif;
+  padding-top: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 40%;
+}
+
+#editForm label{
+  margin-bottom: 16px;
+}
+
+#editForm input, select {
+  border: none;
+  box-shadow: 0 0 5px 1px #E8E8E8;
+  border-radius: 5px;
+  padding: 16px;
+  margin-bottom: 32px;
+}
+
+.fullfield {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.halffield {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+}
+
+#editForm button {
+  display: flex;
+  /* align-content: end; */
+  justify-content: flex-end;
+  /* align-items: end; */
+  /* margin-right: 0; */
+  margin-bottom: 32px;
 }

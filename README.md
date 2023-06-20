@@ -1,16 +1,21 @@
 # DTT Assessment
+I am applying for an internship at DTT. This process requires making an assessment to judge my skills. <br><br>
+The README states the requirements for this assessment, and it contains an hour log in which I reflect on how much time I have spent on certain subjects. <br>
+The complete assessment can be found in this GitHub repository. All files that are needed to view the final product are included. You can run the files on your own device by following the steps I have declared in "Project setup", further along this README.
+
 
 ## Assessment info
-
+This assessment focusses on creating a web application for house listings, which allows the user to view a list of houses that are currently available for sale, and create, edit and delete their own listings. This assessment has both requirements that must be present in the final product, and requirements that can be added as a bonus. 
 
 
 ## Project Setup
+``` sh
+git clone https://github.com/LinaParren/DTT-Assessment.git
+```
 
 ```sh
 npm install
 ```
-
-### Compile 
 
 ```sh
 npm run dev -- --port 8080
@@ -65,8 +70,18 @@ npm run dev -- --port 8080
     <td>19/06/2023</td>
   </tr>
   <tr>
+    <td>Add function to Edit button</td>
+    <td>1</td>
+    <td>20/06/2023</td>
+  </tr>
+  <tr>
+    <td>Styling page Edit</td>
+    <td>1</td>
+    <td>20/06/2023</td>
+  </tr>
+  <tr>
     <td></td>
-    <td>6</td>
+    <td>8</td>
     <td></td>
   </tr>
 </table>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./public/images/img_logo_fav.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./public/css/style.css" rel="stylesheet" id="theme-link">
+    <title>DTT Real Estate</title>
+</head>
+
+<body>
+
+    <header>
+        <div>
+            <img src="./public/images/img_logo_dtt@3x.png" alt="Logo DTT">
+            <a href="index.html">Houses</a>
+            <a class="not-active" href="about.html">About</a>
+        </div>
+    </header>
+
+    <main class="page_edit">
+
+        <div class="back">
+            <img src="./public/images/ic_back_grey@3x.png" href="index.html" alt="Go back to home page">
+            <a href="index.html">&nbsp;&nbsp;Back to detail page</a>
+        </div>
+
+        <h1>Edit listing</h1>
+
+        <form id="editForm">
+            <div class="fullfield">
+                <label for="street">Street name*</label>
+                <input type="text" id="street" name="street" required>
+            </div>
+
+            <div class="halffield">
+                <label class="half" for="houseNumber">House number*</label>
+                <input type="number" id="housenumber" name="houseNumber" required>
+            </div>
+
+            <div class="halffield">
+                <label class="half" for="houseNumberAddition">Addition (optional)</label>
+                <input type="text" id="housenumberaddition" name="houseNumberAddition">
+            </div>
+
+            <div class="fullfield">
+                <label for="zip">Postal code*</label>
+                <input type="text" id="zip" name="zip" required>
+            </div>
+
+            <div class="fullfield">
+                <label for="city">City*</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+
+            <div class="fullfield">
+                <label for="image">Upload picture (PNG or JPG)*</label>
+                <!-- <input type="text" id="city" name="city" required> -->
+            </div>
+
+            <div class="fullfield">
+                <label for="price">Price*</label>
+                <input type="number" id="price" name="price" required> <!-- or text? -->
+            </div>
+
+            <div class="halffield">
+                <label class="half" for="size">Size*</label>
+                <input type="number" id="size" name="size" required> <!-- or text? -->
+            </div>
+
+            <div class="halffield">
+                <label class="half" for="garage">Garage*</label>
+                <select>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <div class="halffield">
+                <label class="half" for="bedrooms">Bedrooms*</label>
+                <input type="number" id="bedrooms" name="bedrooms" required>
+            </div>
+
+            <div class="halffield">
+                <label class="half" for="bathrooms">Bathrooms*</label>
+                <input type="number" id="bathrooms" name="bathrooms" required>
+            </div>
+
+            <div class="fullfield">
+                <label for="constructiondate">Construction date*</label>
+                <input type="date" id="constructiondate" name="constructiondate" required>
+                <!-- is there option for date? -->
+            </div>
+
+            <div class="fullfield">
+                <label for="description">Description*</label>
+                <input type="text" id="description" name="description" required>
+            </div>
+
+            <button class="borange" type="submit">Save</button>
+        </form>
+
+    </main>
+
+
+    <script type="module" src="./public/scripts/edit.js"></script>
+
+</body>
+
+</html>
