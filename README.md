@@ -80,8 +80,28 @@ npm run dev -- --port 8080
     <td>20/06/2023</td>
   </tr>
   <tr>
+    <td>Placeholder and error fixes</td>
+    <td>0,75</td>
+    <td>20/06/2023</td>
+  </tr>
+  <tr>
+    <td>Fix page Edit listing</td>
+    <td>1,25</td>
+    <td>21/06/2023</td>
+  </tr>
+  <tr>
+    <td>Make page Create new listing</td>
+    <td>0,75</td>
+    <td>21/06/2023</td>
+  </tr>
+  <tr>
+    <td>Make Detail page</td>
+    <td>2</td>
+    <td>21/06/2023</td>
+  </tr>
+  <tr>
     <td></td>
-    <td>8</td>
+    <td>12,75</td>
     <td></td>
   </tr>
 </table>

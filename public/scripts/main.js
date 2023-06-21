@@ -7,12 +7,21 @@ var requestOptions = {
     redirect: 'follow'
 };
 
+// ----------
+const housesList = document.getElementById('overview');
+// ----------
+
 fetch("https://api.intern.d-tt.nl/api/houses", requestOptions)
     .then(response => response.json())
     .then(result => {
         console.log(result)
         const housesList = document.getElementById('overview');
         housesList.innerHTML = ''; // Clear the existing content of the list
+    // .then(data => {
+    //     data.forEach(house => {
+
+        // })
+    // })
 
         result.forEach(item => {
             const {
@@ -38,8 +47,18 @@ fetch("https://api.intern.d-tt.nl/api/houses", requestOptions)
                 bedrooms,
             } = rooms;
 
+
+      // ----------
+    //   const { id, image, location, price, rooms, size, madeByMe } = house;
+    //   const { city, houseNumber, houseNumberAddition, street, zip } = location;
+    //   const { bathrooms, bedrooms } = rooms;
+      // ----------
+
             const listItem = document.createElement('li');
             listItem.classList.add('house-item');
+            // listItem.addEventListener('click', () => {
+            //     window.location.href = `house.html?houseId=${id}`;
+            //   });
 
             const houseImage = document.createElement('div');
             houseImage.classList.add('house-image');
@@ -113,6 +132,10 @@ fetch("https://api.intern.d-tt.nl/api/houses", requestOptions)
                 houseModify.appendChild(houseDelete);
             }
 
+            listItem.addEventListener('click', () => {
+                window.location.href = `house.html?houseId=${id}`;
+            });
+
             houseInfo.appendChild(streetName);
             houseInfo.appendChild(priceHouse);
             houseInfo.appendChild(addressHouse);
@@ -125,6 +148,11 @@ fetch("https://api.intern.d-tt.nl/api/houses", requestOptions)
         });
     })
     .catch(error => console.log('error', error));
+
+const houseId = new URLSearchParams(window.location.search).get('houseId');
+if (houseId) {
+    populateFormWithHouseData(houseId);
+}
 
 // -----------------------------------------------------
 

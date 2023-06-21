@@ -71,22 +71,22 @@ main {
   background-color: #F6F6F6;
 }
 
-main .page_edit {
-  background-color: blue;
-}
-
 /* main div {
   margin-bottom: 2em;
 } */
 
-.create {
+
+
+/* PAGE_HOME *//* PAGE_HOME *//* PAGE_HOME *//* PAGE_HOME *//* PAGE_HOME *//* PAGE_HOME */
+
+.page_home .create {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 32px;
 }
 
-.search {
+.page_home .search {
   /* display: grid;
   grid-template-columns: repeat(auto-fit, minmax(21em, 1fr)); */
   display: flex;
@@ -96,7 +96,7 @@ main .page_edit {
   margin-top: 32px;
 }
 
-.search p {
+.page_home .search p {
   width: 30%;
 }
 
@@ -108,11 +108,11 @@ main .page_edit {
   background-color: #C3C3C3;
 }
 
-.listings {
+.page_home .listings {
   margin-top: 32px;
 }
 
-.listings li {
+.page_home .listings li {
   font-family: 'Open Sans', sans-serif;
   background-color: white;
   box-shadow: 0 0 5px 1px #E8E8E8;
@@ -123,22 +123,22 @@ main .page_edit {
   margin-left: 0;
 }
 
-#overview {
+.page_home #overview {
   padding: 0;
 }
 
 /* li */
-.house-item {
+.page_home .house-item {
   margin-bottom: 20px;
   padding: 16px;
 }
 
 /* de div met de img */
-.house-image {
+.page_home .house-image {
   width: 15%;
 }
 
-.house-image img {
+.page_home .house-image img {
   margin-right: 16px;
   width: 150px;
   height: 150px;
@@ -147,54 +147,56 @@ main .page_edit {
 }
 
 /* de div met de adress etc. */
-.house-info {
+.page_home .house-info {
   width: 20%;
 }
 
 /* de div met edit */
-.house-modify {
+.page_home .house-modify {
   width: 65%;
   display: flex;
   justify-content: end;
 }
 
-.house-edit-button {
+.page_home .house-edit-button {
   width: 20px;
   margin-right: 16px;
+  z-index: 99;
 }
-.house-delete-button {
+
+.page_home .house-delete-button {
   width: 20px;
   margin-right: 16px;
 }
 
 
 /* div info straat etc*/
-.house-streetname {
+.page_home .house-streetname {
   font-weight: bold;
   display: flex;
   margin-bottom: 16px;
 }
 
-.house-price {
+.page_home .house-price {
   color: #4A4B4C;
   margin-bottom: 16px;
 }
 
-.house-address {
+.page_home .house-address {
   color: #C3C3C3;
   display: flex;
   margin-bottom: 16px;
 }
 
 /* div info kamers etc*/
-.house-details {
+.page_home .house-details {
   color: #4A4B4C;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.house-details img {
+.page_home .house-details img {
   width: 16px;
   height: 16px;
 }
@@ -203,7 +205,7 @@ main .page_edit {
 
 
 
-
+/* PAGE_EDIT *//* PAGE_EDIT *//* PAGE_EDIT *//* PAGE_EDIT *//* PAGE_EDIT *//* PAGE_EDIT */
 
 .page_edit {
   margin-top: 32px;
@@ -239,7 +241,7 @@ main .page_edit {
   margin-bottom: 16px;
 }
 
-#editForm input, select {
+#editForm input, select, textarea {
   border: none;
   box-shadow: 0 0 5px 1px #E8E8E8;
   border-radius: 5px;
@@ -267,3 +269,211 @@ main .page_edit {
   /* margin-right: 0; */
   margin-bottom: 32px;
 }
+
+
+/* PAGE_CREATE *//* PAGE_CREATE *//* PAGE_CREATE *//* PAGE_CREATE *//* PAGE_CREATE *//* PAGE_CREATE */
+
+.page_create {
+  margin-top: 32px;
+  font-family: 'Open Sans', sans-serif;
+  background: url(../images/img_background@3x.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 16px;
+}
+
+.page_create .back {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 32px;
+}
+
+.page_create img {
+  width: 16px;
+}
+
+#createForm {
+  font-family: 'Open Sans', sans-serif;
+  padding-top: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 40%;
+}
+
+#createForm label{
+  margin-bottom: 16px;
+}
+
+#createForm input, select, textarea {
+  border: none;
+  box-shadow: 0 0 5px 1px #E8E8E8;
+  border-radius: 5px;
+  padding: 16px;
+  margin-bottom: 32px;
+}
+
+.fullfield {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.halffield {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+}
+
+#createForm button {
+  display: flex;
+  /* align-content: end; */
+  justify-content: flex-end;
+  /* align-items: end; */
+  /* margin-right: 0; */
+  margin-bottom: 32px;
+}
+
+
+
+
+
+/* PAGE_HOUSE *//* PAGE_HOUSE *//* PAGE_HOUSE *//* PAGE_HOUSE *//* PAGE_HOUSE *//* PAGE_HOUSE */
+
+.page_house {
+  /* font-family: 'Open Sans', sans-serif; */
+  font-family: monospace;
+  color: #4A4B4C;
+  /* background-color: white;
+  box-shadow: 0 0 5px 1px #E8E8E8;
+  border-radius: 5px; */
+  padding-top: 32px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 0;
+}
+
+.page_house .back {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 32px;
+}
+
+.page_house .back img {
+  width: 16px;
+}
+
+.page_house_main {
+  display: flex;
+  flex-direction: row;
+  /* color: #4A4B4C; */
+}
+
+.page_house #single_house {
+  /* color: #4A4B4C; */
+  width: 60%;
+  background-color: white;
+}
+
+.page_house .recommended {
+  width: 35%;
+}
+
+/* li */
+.page_house .house-item {
+  margin-bottom: 20px;
+}
+
+/* de div met de img */
+.page_house .house-image {
+  width: 100%;
+}
+
+.page_house .house-image img {
+  /* margin-right: 16px; */
+  /* width: 150px;
+  height: 150px; */
+  width: 100%;
+  object-fit: cover;
+  /* border-radius: 8px; */
+}
+
+/* de div met de adress etc. */
+.page_house .house-info {
+  padding: 16px;
+}
+
+/* de div met edit */
+.page_house .house-modify {
+  width: 30%;
+  display: flex;
+  justify-content: end;
+}
+
+.page_house .house-edit-button {
+  width: 20px;
+  margin-right: 16px;
+  z-index: 99;
+}
+
+.page_house .house-delete-button {
+  width: 20px;
+  margin-right: 16px;
+}
+
+
+/* div info straat etc*/
+.page_house .house-streetname {
+  font-weight: bold;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.page_house .house-streetname img {
+  width: 16px;
+  height: 16px;
+}
+
+.page_house .house-price {
+  /* color: #4A4B4C; */
+  margin-bottom: 16px;
+  max-width: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page_house .house-price img {
+  width: 16px;
+  height: 16px;
+}
+
+.page_house .house-address {
+  /* color: #C3C3C3; */
+  display: flex;
+  margin-bottom: 16px;
+}
+
+/* div info kamers etc*/
+.page_house .house-details {
+  /* color: #4A4B4C; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 40%;
+}
+
+.page_house .house-details img {
+  width: 16px;
+  height: 16px;
+}
+
+/* .page_house .house-description {
+  width: 90%;
+} */
