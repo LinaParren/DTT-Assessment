@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="./public/images/img_logo_fav.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./public/css/style.css" rel="stylesheet" id="theme-link">
+  <title>DTT Real Estate - Create Listing</title>
+</head>
+
+<body>
+  <header>
+    <div>
+        <a href="./index.html"><img src="./public/images/img_logo_dtt@3x.png" alt="Logo DTT"></a>
+      <a href="index.html">Houses</a>
+      <a class="not-active" href="about.html">About</a>
+    </div>
+  </header>
+
+  <main class="page_create">
+
+    <div class="back">
+      <img src="./public/images/ic_back_grey@3x.png" href="index.html" alt="Go back to home page">
+      <a href="index.html">&nbsp;&nbsp;Back to listings</a>
+    </div>
+
+    <h1>Create new listing</h1>
+
+    <form id="createForm">
+      <div class="fullfield">
+        <label for="street">Street name*</label>
+        <input type="text" id="createstreet" name="street" required>
+      </div>
+
+      <div class="halffield">
+        <label class="half" for="houseNumber">House number*</label>
+        <input type="number" id="createhousenumber" name="houseNumber" required>
+      </div>
+
+      <div class="halffield">
+        <label class="half" for="houseNumberAddition">Addition (optional)</label>
+        <input type="text" id="createhousenumberaddition" name="houseNumberAddition">
+      </div>
+
+      <div class="fullfield">
+        <label for="zip">Postal code*</label>
+        <input type="text" id="createzip" name="zip" required>
+      </div>
+
+      <div class="fullfield">
+        <label for="city">City*</label>
+        <input type="text" id="createcity" name="city" required>
+      </div>
+
+      <div class="fullfield">
+        <label for="image">Upload picture (PNG or JPG)*</label>
+        <input type="file" id="createimage" name="image" accept="image/png, image/jpeg" required>
+      </div>
+
+      <div class="fullfield">
+        <label for="price">Price*</label>
+        <input type="number" id="createprice" name="price" required>
+      </div>
+
+      <div class="halffield">
+        <label class="half" for="size">Size*</label>
+        <input type="number" id="createsize" name="size" required>
+      </div>
+
+      <div class="halffield">
+        <label class="half" for="garage">Garage*</label>
+        <select id="creategarage" name="garage" required>
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+        </select>
+      </div>
+
+      <div class="halffield">
+        <label class="half" for="bedrooms">Bedrooms*</label>
+        <input type="number" id="createbedrooms" name="bedrooms" required>
+      </div>
+
+      <div class="halffield">
+        <label class="half" for="bathrooms">Bathrooms*</label>
+        <input type="number" id="createbathrooms" name="bathrooms" required>
+      </div>
+
+      <div class="fullfield">
+        <label for="constructiondate">Construction date*</label>
+        <input type="date" id="createconstructiondate" name="constructiondate" required>
+      </div>
+
+      <div class="fullfield">
+        <label for="description">Description*</label>
+        <textarea id="createdescription" name="description" required></textarea>
+      </div>
+
+      <button class="borange" type="submit">Create Listing</button>
+    </form>
+
+  </main>
+
+  <script type="module" src="./public/scripts/create.js"></script>
+
+</body>
+
+</html>
