@@ -100,8 +100,18 @@ npm run dev -- --port 8080
     <td>21/06/2023</td>
   </tr>
   <tr>
+    <td>Styling Detail page</td>
+    <td>0,75</td>
+    <td>22/06/2023</td>
+  </tr>
+  <tr>
+    <td>Implement search bar</td>
+    <td>1</td>
+    <td>22/06/2023</td>
+  </tr>
+  <tr>
     <td></td>
-    <td>12,75</td>
+    <td>14,50</td>
     <td></td>
   </tr>
 </table>
