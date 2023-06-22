@@ -110,8 +110,13 @@ npm run dev -- --port 8080
     <td>22/06/2023</td>
   </tr>
   <tr>
+    <td>"No results" message for search bar</td>
+    <td>0,5</td>
+    <td>22/06/2023</td>
+  </tr>
+  <tr>
     <td></td>
-    <td>14,50</td>
+    <td>15</td>
     <td></td>
   </tr>
 </table>
