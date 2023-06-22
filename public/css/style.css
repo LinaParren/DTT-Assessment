@@ -90,13 +90,12 @@ header .not-active {
 }
 
 .page_home .search {
-  /* display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(21em, 1fr)); */
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   margin-top: 32px;
+  margin-bottom: 32px;
 }
 
 .page_home .search input {
@@ -105,8 +104,9 @@ header .not-active {
   border: none;
   border-radius: 5px;
   padding: 16px;
-  margin-bottom: 32px;
   width: 40%;
+  /* display: flex;
+  align-items: center; */
 }
 
 .page_home .search input::placeholder {
@@ -510,4 +510,20 @@ header .not-active {
 .page_house .house-details img {
   width: 16px;
   height: 16px;
+}
+
+
+
+.no_results {
+  font-family: 'Montserrat', sans-serif;
+  color: #4A4B4C;  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.no_results img {
+  display: flex;
+  width: 320px;
+  margin: 48px;
 }

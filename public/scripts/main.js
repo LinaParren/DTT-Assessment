@@ -148,9 +148,18 @@ fetch("https://api.intern.d-tt.nl/api/houses", requestOptions)
     function displayResults(results) {
       housesList.innerHTML = '';
 
+
+    //   houseDelete.innerHTML = `
+    //         <img src="../images/ic_delete@3x.png" alt="Delete house">
+    //     `;
+
       if (results.length === 0) {
-        const noResults = document.createElement('li');
-        noResults.textContent = 'No results found.';
+        const noResults = document.createElement('div');
+        noResults.classList.add('no_results');
+        noResults.innerHTML = `
+        <img src="../images/img_empty_houses@3x.png" alt="No results">
+        No results found. Please try another keyword.
+        `;
         housesList.appendChild(noResults);
       } else {
         results.forEach(item => {
