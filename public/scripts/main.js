@@ -2,159 +2,324 @@ var myHeaders = new Headers();
 myHeaders.append("X-Api-Key", "0D2payThq_sfnNlBtRod15V3ZMAckuQw");
 
 var requestOptions = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow'
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
 };
 
-// ----------
 const housesList = document.getElementById('overview');
-// ----------
 
 fetch("https://api.intern.d-tt.nl/api/houses", requestOptions)
-    .then(response => response.json())
-    .then(result => {
-        console.log(result)
-        const housesList = document.getElementById('overview');
-        housesList.innerHTML = ''; // Clear the existing content of the list
-    // .then(data => {
-    //     data.forEach(house => {
+  .then(response => response.json())
+  .then(result => {
+    console.log(result)
+    housesList.innerHTML = ''; // Clear the existing content of the list
 
-        // })
-    // })
+    result.forEach(item => {
+      const {
+        id,
+        image,
+        location,
+        price,
+        rooms,
+        size,
+        madeByMe
+      } = item;
 
-        result.forEach(item => {
-            const {
-                id,
-                image,
-                location,
-                price,
-                rooms,
-                size,
-                madeByMe
-            } = item;
+      const {
+        city,
+        houseNumber,
+        houseNumberAddition,
+        street,
+        zip
+      } = location;
 
-            const {
-                city,
-                houseNumber,
-                houseNumberAddition,
-                street,
-                zip
-            } = location;
+      const {
+        bathrooms,
+        bedrooms,
+      } = rooms;
 
-            const {
-                bathrooms,
-                bedrooms,
-            } = rooms;
+      const listItem = document.createElement('li');
+      listItem.classList.add('house-item');
+
+      const houseImage = document.createElement('div');
+      houseImage.classList.add('house-image');
+      houseImage.innerHTML = `
+        <img src="${image}" alt="Image of the house">
+      `;
+
+      const houseInfo = document.createElement('div');
+      houseInfo.classList.add('house-info');
+
+      const houseModify = document.createElement('div');
+      houseModify.classList.add('house-modify');
+
+      const streetName = document.createElement('div');
+      streetName.classList.add('house-streetname');
+      streetName.innerHTML = `
+        ${street}
+        ${houseNumber}
+        ${houseNumberAddition}
+      `;
+
+      const priceHouse = document.createElement('div');
+      priceHouse.classList.add('house-price');
+      priceHouse.innerHTML = `&euro; ${price.toLocaleString('nl-NL')}`;
+
+      const addressHouse = document.createElement('div');
+      addressHouse.classList.add('house-address');
+      addressHouse.innerHTML = `
+        ${zip}
+        ${city}
+      `;
+
+      const detailsHouse = document.createElement('div');
+      detailsHouse.classList.add('house-details');
+      detailsHouse.innerHTML = `
+        <img src="../images/ic_bed@3x.png" alt="bedrooms">
+        ${bedrooms}
+        <img src="../images/ic_bath@3x.png" alt="bedrooms">
+        ${bathrooms}
+        <img src="../images/ic_size@3x.png" alt="bedrooms">
+        ${size} m&sup2;
+      `;
+
+      if (madeByMe == true) {
+        const houseEdit = document.createElement('a');
+        houseEdit.classList.add('house-delete');
+        houseEdit.innerHTML = `
+            <img src="../images/ic_edit@3x.png" alt="Edit house">
+        `;
+        houseEdit.addEventListener('click', () => {
+            window.location.href = `edit.html?houseId=${id}`;
+        });
+
+        const houseDelete = document.createElement('a');
+        houseDelete.classList.add('house-delete');
+        houseDelete.innerHTML = `
+            <img src="../images/ic_delete@3x.png" alt="Delete house">
+        `;
+
+        houseModify.appendChild(houseEdit);
+        houseModify.appendChild(houseDelete);
+    }
+
+      listItem.addEventListener('click', () => {
+        window.location.href = `house.html?houseId=${id}`;
+      });
+
+      houseInfo.appendChild(streetName);
+      houseInfo.appendChild(priceHouse);
+      houseInfo.appendChild(addressHouse);
+      houseInfo.appendChild(detailsHouse);
+      listItem.appendChild(houseImage);
+      listItem.appendChild(houseInfo);
+      listItem.appendChild(houseModify);
+      housesList.appendChild(listItem);
+    });
 
 
-      // ----------
-    //   const { id, image, location, price, rooms, size, madeByMe } = house;
-    //   const { city, houseNumber, houseNumberAddition, street, zip } = location;
-    //   const { bathrooms, bedrooms } = rooms;
-      // ----------
+    // Search functionality
+    const searchInput = document.getElementById('searchbar');
+    searchInput.addEventListener('input', searchHandler);
+    searchInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault(); // Prevent form submission
+        searchHandler();
+      }
+    });
 
-            const listItem = document.createElement('li');
-            listItem.classList.add('house-item');
-            // listItem.addEventListener('click', () => {
-            //     window.location.href = `house.html?houseId=${id}`;
-            //   });
+    function searchHandler() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const filteredData = result.filter(item => {
+        return (
+        //   item.description.toLowerCase().includes(searchTerm) ||
+          item.location.street.toLowerCase().includes(searchTerm) ||
+          item.location.city.toLowerCase().includes(searchTerm) ||
+          item.location.zip.toString().includes(searchTerm) ||
+          item.price.toString().includes(searchTerm) ||
+          item.size.toString().includes(searchTerm)
+        );
+      });
 
-            const houseImage = document.createElement('div');
-            houseImage.classList.add('house-image');
-            houseImage.innerHTML = `
+      displayResults(filteredData);
+    }
+
+    function displayResults(results) {
+      housesList.innerHTML = '';
+
+      if (results.length === 0) {
+        const noResults = document.createElement('li');
+        noResults.textContent = 'No results found.';
+        housesList.appendChild(noResults);
+      } else {
+        results.forEach(item => {
+          const {
+            id,
+            image,
+            location,
+            price,
+            rooms,
+            size,
+            madeByMe
+          } = item;
+
+          const {
+            city,
+            houseNumber,
+            houseNumberAddition,
+            street,
+            zip
+          } = location;
+
+          const {
+            bathrooms,
+            bedrooms,
+          } = rooms;
+
+          const listItem = document.createElement('li');
+          listItem.classList.add('house-item');
+
+          const houseImage = document.createElement('div');
+          houseImage.classList.add('house-image');
+          houseImage.innerHTML = `
             <img src="${image}" alt="Image of the house">
+          `;
+
+          const houseInfo = document.createElement('div');
+          houseInfo.classList.add('house-info');
+
+          const houseModify = document.createElement('div');
+          houseModify.classList.add('house-modify');
+
+          const streetName = document.createElement('div');
+          streetName.classList.add('house-streetname');
+          streetName.innerHTML = `
+            ${street}
+            ${houseNumber}
+            ${houseNumberAddition}
+          `;
+
+          const priceHouse = document.createElement('div');
+          priceHouse.classList.add('house-price');
+          priceHouse.innerHTML = `&euro; ${price.toLocaleString('nl-NL')}`;
+
+          const addressHouse = document.createElement('div');
+          addressHouse.classList.add('house-address');
+          addressHouse.innerHTML = `
+            ${zip}
+            ${city}
+          `;
+
+          const detailsHouse = document.createElement('div');
+          detailsHouse.classList.add('house-details');
+          detailsHouse.innerHTML = `
+            <img src="../images/ic_bed@3x.png" alt="bedrooms">
+            ${bedrooms}
+            <img src="../images/ic_bath@3x.png" alt="bedrooms">
+            ${bathrooms}
+            <img src="../images/ic_size@3x.png" alt="bedrooms">
+            ${size} m&sup2;
+          `;
+
+          if (madeByMe == true) {
+            const houseEdit = document.createElement('a');
+            houseEdit.classList.add('house-edit');
+            houseEdit.innerHTML = `
+              <img src="../images/ic_edit@3x.png" alt="Edit house">
             `;
-
-            const houseInfo = document.createElement('div');
-            houseInfo.classList.add('house-info');
-
-            const houseModify = document.createElement('div');
-            houseModify.classList.add('house-modify');
-
-            const streetName = document.createElement('div');
-            streetName.classList.add('house-streetname');
-            streetName.innerHTML = `
-                ${street}
-                ${houseNumber}
-                ${houseNumberAddition}
-            `;
-
-            const priceHouse = document.createElement('div');
-            priceHouse.classList.add('house-price');
-            priceHouse.innerHTML = `&euro; ${price.toLocaleString('nl-NL')}`;
-
-            const addressHouse = document.createElement('div');
-            addressHouse.classList.add('house-address');
-            addressHouse.innerHTML = `
-                ${zip}
-                ${city}
-            `;
-
-            const detailsHouse = document.createElement('div');
-            detailsHouse.classList.add('house-details');
-            detailsHouse.innerHTML = `
-                <img src="../images/ic_bed@3x.png" alt="bedrooms">
-                ${bedrooms}
-                <img src="../images/ic_bath@3x.png" alt="bedrooms">
-                ${bathrooms}
-                <img src="../images/ic_size@3x.png" alt="bedrooms">
-                ${size} m&sup2;
-            `;
-
-            // const houseEdit = document.createElement('div');
-            // houseEdit.classList.add('house-edit');
-            // houseEdit.addEventListener('click', () => {
-            //     editHouse(item.id); // Call the editHouse function with the house ID
-            // });
-
-            // const houseDelete = document.createElement('div');
-            // houseDelete.classList.add('house-edit');
-
-
-            if (madeByMe == true) {
-                const houseEdit = document.createElement('button');
-                houseEdit.classList.add('house-edit');
-                houseEdit.innerHTML = `
-                    <img src="../images/ic_edit@3x.png" alt="bedrooms">
-                `;
-                houseEdit.addEventListener('click', () => {
-                    window.location.href = `edit.html?houseId=${id}`;
-                });
-
-                const houseDelete = document.createElement('button');
-                houseDelete.classList.add('house-delete');
-                houseDelete.innerHTML = `
-                    <img src="../images/ic_delete@3x.png" alt="bedrooms">
-                `;
-
-                houseModify.appendChild(houseEdit);
-                houseModify.appendChild(houseDelete);
-            }
-
-            listItem.addEventListener('click', () => {
-                window.location.href = `house.html?houseId=${id}`;
+            houseEdit.addEventListener('click', () => {
+              window.location.href = `edit.html?houseId=${id}`;
             });
 
-            houseInfo.appendChild(streetName);
-            houseInfo.appendChild(priceHouse);
-            houseInfo.appendChild(addressHouse);
-            houseInfo.appendChild(detailsHouse);
-            listItem.appendChild(houseImage);
-            listItem.appendChild(houseInfo);
-            listItem.appendChild(houseModify);
-            housesList.appendChild(listItem);
+            const houseDelete = document.createElement('a');
+            houseDelete.classList.add('house-delete');
+            houseDelete.innerHTML = `
+              <img src="../images/ic_delete@3x.png" alt="Delete house">
+            `;
 
+            houseModify.appendChild(houseEdit);
+            houseModify.appendChild(houseDelete);
+          }
+
+          listItem.addEventListener('click', () => {
+            window.location.href = `house.html?houseId=${id}`;
+          });
+
+          houseInfo.appendChild(streetName);
+          houseInfo.appendChild(priceHouse);
+          houseInfo.appendChild(addressHouse);
+          houseInfo.appendChild(detailsHouse);
+          listItem.appendChild(houseImage);
+          listItem.appendChild(houseInfo);
+          listItem.appendChild(houseModify);
+
+          housesList.appendChild(listItem);
         });
-    })
-    .catch(error => console.log('error', error));
+      }
+    }
+  })
+  .catch(error => console.log('error', error));
 
-const houseId = new URLSearchParams(window.location.search).get('houseId');
-if (houseId) {
-    populateFormWithHouseData(houseId);
-}
+
 
 // -----------------------------------------------------
+
+
+// Fetch the API data
+// fetch("https://api.intern.d-tt.nl/api/houses")
+//     .then(response => response.json())
+//     .then(data => {
+//         const searchInput = document.getElementById('searchbar');
+//         const resultsList = document.getElementById('results');
+
+//         // Function to filter the data based on search input
+//         const searchHandler = () => {
+//             const searchTerm = searchInput.value.toLowerCase();
+//             const filteredData = data.filter(item => {
+//                 // Modify the conditions based on your desired search criteria
+//                 return (
+//                     item.description.toLowerCase().includes(searchTerm) ||
+//                     item.location.city.toLowerCase().includes(searchTerm)
+//                 );
+//             });
+
+//             // Display the filtered results
+//             displayResults(filteredData);
+//         };
+
+//         // Function to display the search results
+//         const displayResults = (results) => {
+//             resultsList.innerHTML = '';
+
+//             if (results.length === 0) {
+//                 const noResults = document.createElement('li');
+//                 noResults.textContent = 'No results found.';
+//                 resultsList.appendChild(noResults);
+//             } else {
+//                 results.forEach(result => {
+//                     const listItem = document.createElement('li');
+//                     listItem.textContent = result.description;
+//                     resultsList.appendChild(listItem);
+//                 });
+//             }
+//         };
+
+//         // Add event listener to trigger search on input change
+//         searchInput.addEventListener('input', searchHandler);
+//         searchInput.addEventListener('keydown', (event) => {
+//             if (event.key === 'Enter') {
+//                 event.preventDefault(); // Prevent form submission
+//                 searchHandler();
+//             }
+//         });
+//     })
+//     .catch(error => {
+//         console.error('Error:', error);
+//     });
+
+
+
 
 
 // function editHouse(houseId) {

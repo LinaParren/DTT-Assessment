@@ -16,6 +16,17 @@ main {
   padding-right: 10%;
 }
 
+.metachtergrond {
+  background: url(../images/img_background@3x.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.metgrijs {
+  background-color: #F6F6F6;
+}
+
+
 /* Style text */
 h1 {
   font-size: 32px;
@@ -48,6 +59,7 @@ button {
 
 header {
   font-family: 'Montserrat', sans-serif;
+  background-color: white;
 }
 
 header div {
@@ -66,15 +78,6 @@ header img {
 header .not-active {
   color: #E8E8E8;
 }
-
-main {
-  background-color: #F6F6F6;
-}
-
-/* main div {
-  margin-bottom: 2em;
-} */
-
 
 
 /* PAGE_HOME *//* PAGE_HOME *//* PAGE_HOME *//* PAGE_HOME *//* PAGE_HOME *//* PAGE_HOME */
@@ -96,8 +99,27 @@ main {
   margin-top: 32px;
 }
 
-.page_home .search p {
-  width: 30%;
+.page_home .search input {
+  color: #C3C3C3;
+  background-color: #E8E8E8;
+  border: none;
+  border-radius: 5px;
+  padding: 16px;
+  margin-bottom: 32px;
+  width: 40%;
+}
+
+.page_home .search input::placeholder {
+  color: #C3C3C3;
+}
+
+.page_home .search #searchbar {
+  background-image: url(../images/ic_search@3x.png);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 16px;
+  padding-left: 32px; /* Adjust the padding as needed */
+  /* margin: 20px; */
 }
 
 .borange {
@@ -119,7 +141,7 @@ main {
   border-radius: 5px;
   margin-bottom: 16px;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   margin-left: 0;
 }
 
@@ -136,6 +158,8 @@ main {
 /* de div met de img */
 .page_home .house-image {
   width: 15%;
+  display: flex;
+  align-items: center;
 }
 
 .page_home .house-image img {
@@ -158,15 +182,14 @@ main {
   justify-content: end;
 }
 
-.page_home .house-edit-button {
-  width: 20px;
-  margin-right: 16px;
-  z-index: 99;
+.page_home .house-edit img {
+  width: 24px;
+  margin: 8px;
 }
 
-.page_home .house-delete-button {
-  width: 20px;
-  margin-right: 16px;
+.page_home .house-delete img {
+  width: 24px;
+  margin: 8px;
 }
 
 
@@ -202,25 +225,24 @@ main {
 }
 
 
-
-
-
 /* PAGE_EDIT *//* PAGE_EDIT *//* PAGE_EDIT *//* PAGE_EDIT *//* PAGE_EDIT *//* PAGE_EDIT */
 
 .page_edit {
   margin-top: 32px;
   font-family: 'Open Sans', sans-serif;
-  background: url(../images/img_background@3x.png);
-  background-repeat: no-repeat;
-  background-size: cover;
   margin-bottom: 16px;
 }
 
 .page_edit .back {
   display: flex;
-  align-items: center;
+  align-content: center;
   font-weight: bold;
   margin-bottom: 32px;
+}
+
+.page_edit .back a {
+  display: flex;
+  align-items: center;
 }
 
 .page_edit img {
@@ -276,17 +298,22 @@ main {
 .page_create {
   margin-top: 32px;
   font-family: 'Open Sans', sans-serif;
-  background: url(../images/img_background@3x.png);
+  /* background: url(../images/img_background@3x.png);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
   margin-bottom: 16px;
 }
 
 .page_create .back {
   display: flex;
-  align-items: center;
+  align-content: center;
   font-weight: bold;
   margin-bottom: 32px;
+}
+
+.page_create .back a {
+  display: flex;
+  align-items: center;
 }
 
 .page_create img {
@@ -358,13 +385,19 @@ main {
 
 .page_house .back {
   display: flex;
-  align-items: center;
+  align-content: center;
   font-weight: bold;
   margin-bottom: 32px;
 }
 
 .page_house .back img {
   width: 16px;
+  height: 16px;
+}
+
+.page_house .back a {
+  display: flex;
+  align-items: center;
 }
 
 .page_house_main {
@@ -407,22 +440,26 @@ main {
   padding: 16px;
 }
 
+.page_house .house-iets {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* width: 100%; */
+}
+
 /* de div met edit */
 .page_house .house-modify {
-  width: 30%;
   display: flex;
-  justify-content: end;
 }
 
-.page_house .house-edit-button {
-  width: 20px;
-  margin-right: 16px;
-  z-index: 99;
+.page_house .house-edit img {
+  width: 24px;
+  margin: 8px;
 }
 
-.page_house .house-delete-button {
-  width: 20px;
-  margin-right: 16px;
+.page_house .house-delete img {
+  width: 24px;
+  margin: 8px;
 }
 
 
@@ -430,14 +467,7 @@ main {
 .page_house .house-streetname {
   font-weight: bold;
   font-size: 32px;
-  display: flex;
-  align-items: center;
   margin-bottom: 16px;
-}
-
-.page_house .house-streetname img {
-  width: 16px;
-  height: 16px;
 }
 
 .page_house .house-price {
@@ -445,7 +475,8 @@ main {
   margin-bottom: 16px;
   max-width: 60%;
   display: flex;
-  justify-content: space-between;
+  gap: 16px;
+  /* justify-content: space-between; */
   align-items: center;
 }
 
@@ -457,14 +488,21 @@ main {
 .page_house .house-address {
   /* color: #C3C3C3; */
   display: flex;
+  gap: 16px;
+  align-items: center;
   margin-bottom: 16px;
+}
+
+.page_house .house-address img {
+  /* width: 16px; */
+  height: 16px;
 }
 
 /* div info kamers etc*/
 .page_house .house-details {
   /* color: #4A4B4C; */
   display: flex;
-  justify-content: space-between;
+  gap: 16px;
   align-items: center;
   max-width: 40%;
 }
@@ -473,7 +511,3 @@ main {
   width: 16px;
   height: 16px;
 }
-
-/* .page_house .house-description {
-  width: 90%;
-} */
