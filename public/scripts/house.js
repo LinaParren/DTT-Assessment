@@ -120,7 +120,7 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
 
             if (madeByMe == true) {
                 const houseEdit = document.createElement('a');
-                houseEdit.classList.add('house-delete');
+                houseEdit.classList.add('house-edit');
                 houseEdit.innerHTML = `
                     <img src="../images/ic_edit@3x.png" alt="edit">
                 `;
@@ -150,6 +150,110 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
             housesList.appendChild(houseItem);
 
         });
+
+        // ...
+
+        // Access the elements on house.html and populate them with data
+        const recommendedHousesList = document.getElementById('recommended_houses');
+
+        // After populating housesList, get the current house's street and city
+        const currentStreet = houseData[0].location.street;
+        const currentCity = houseData[0].location.city;
+
+        // Filter the result to find similar houses
+        const similarHouses = result.filter(item => {
+            return (
+                (item.location.street === currentStreet || item.location.city === currentCity ) &&
+                item.id !== houseId
+            );
+        });
+
+        // Display the recommended houses
+        similarHouses.forEach(item => {
+
+            const {
+                id,
+                image,
+                location,
+                price,
+                rooms,
+                size,
+            } = item;
+
+            const {
+                city,
+                houseNumber,
+                houseNumberAddition,
+                street,
+                zip
+            } = location;
+
+            const {
+                bathrooms,
+                bedrooms,
+            } = rooms;
+
+
+            // Create the recommended house item
+            const listItem = document.createElement('li');
+            listItem.classList.add('recommended-item');
+
+            const houseImage = document.createElement('div');
+            houseImage.classList.add('recommended-image');
+            houseImage.innerHTML = `
+                <img src="${image}" alt="Image of the house">
+            `;
+
+            const houseInfo = document.createElement('div');
+            houseInfo.classList.add('recommended-info');
+
+            const houseModify = document.createElement('div');
+            houseModify.classList.add('recommended-modify');
+
+            const streetName = document.createElement('div');
+            streetName.classList.add('recommended-streetname');
+            streetName.innerHTML = `
+                ${street}
+                ${houseNumber}
+                ${houseNumberAddition}
+            `;
+
+            const priceHouse = document.createElement('div');
+            priceHouse.classList.add('recommended-price');
+            priceHouse.innerHTML = `&euro; ${price.toLocaleString('nl-NL')}`;
+
+            const addressHouse = document.createElement('div');
+            addressHouse.classList.add('recommended-address');
+            addressHouse.innerHTML = `
+                ${zip}
+                ${city}
+            `;
+
+            const detailsHouse = document.createElement('div');
+            detailsHouse.classList.add('recommended-details');
+            detailsHouse.innerHTML = `
+                <img src="../images/ic_bed@3x.png" alt="bedrooms">
+                ${bedrooms}
+                <img src="../images/ic_bath@3x.png" alt="bedrooms">
+                ${bathrooms}
+                <img src="../images/ic_size@3x.png" alt="bedrooms">
+                ${size} m&sup2;
+            `;
+
+            listItem.addEventListener('click', () => {
+                window.location.href = `house.html?houseId=${id}`;
+            });
+
+            houseInfo.appendChild(streetName);
+            houseInfo.appendChild(priceHouse);
+            houseInfo.appendChild(addressHouse);
+            houseInfo.appendChild(detailsHouse);
+            listItem.appendChild(houseImage);
+            listItem.appendChild(houseInfo);
+            recommendedHousesList.appendChild(listItem);
+
+        });
+
     })
 
     .catch(error => console.log('error', error));

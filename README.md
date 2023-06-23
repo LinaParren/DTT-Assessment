@@ -115,8 +115,13 @@ npm run dev -- --port 8080
     <td>22/06/2023</td>
   </tr>
   <tr>
+    <td>Implement 'Recommendations'</td>
+    <td>1</td>
+    <td>23/06/2023</td>
+  </tr>
+  <tr>
     <td></td>
-    <td>15</td>
+    <td>16</td>
     <td></td>
   </tr>
 </table>
