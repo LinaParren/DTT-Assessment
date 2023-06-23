@@ -86,7 +86,7 @@ fetch("https://api.intern.d-tt.nl/api/houses", requestOptions)
 
       if (madeByMe == true) {
         const houseEdit = document.createElement('a');
-        houseEdit.classList.add('house-delete');
+        houseEdit.classList.add('house-edit');
         houseEdit.innerHTML = `
             <img src="../images/ic_edit@3x.png" alt="Edit house">
         `;
