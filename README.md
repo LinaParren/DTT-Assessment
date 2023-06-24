@@ -120,8 +120,18 @@ npm run dev -- --port 8080
     <td>23/06/2023</td>
   </tr>
   <tr>
+    <td>Fix error on home.html regarding Edit button</td>
+    <td>0,25</td>
+    <td>24/06/2023</td>
+  </tr>
+  <tr>
+    <td>Implement 'Recommendations'</td>
+    <td>1</td>
+    <td>24/06/2023</td>
+  </tr>
+  <tr>
     <td></td>
-    <td>16</td>
+    <td>17,25</td>
     <td></td>
   </tr>
 </table>

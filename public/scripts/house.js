@@ -7,15 +7,13 @@ var showHouse = {
     redirect: 'follow'
 };
 
-const houseId = new URLSearchParams(window.location.search).get('houseId');
+const houseId = new URLSearchParams(window.location.search).get('houseId'); 
 
 fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
     .then(response => response.json())
     .then(result => {
         console.log(result);
         const houseData = result;
-
-        // Access the elements on house.html and populate them with data
 
         const housesList = document.getElementById('single_house');
 
@@ -111,7 +109,7 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
             const houseEdit = document.createElement('div');
             houseEdit.classList.add('house-edit');
             houseEdit.addEventListener('click', () => {
-                editHouse(item.id); // Call the editHouse function with the house ID
+                editHouse(item.id);
             });
 
             const houseDelete = document.createElement('div');
@@ -153,22 +151,22 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
 
         // ...
 
-        // Access the elements on house.html and populate them with data
         const recommendedHousesList = document.getElementById('recommended_houses');
 
-        // After populating housesList, get the current house's street and city
-        const currentStreet = houseData[0].location.street;
-        const currentCity = houseData[0].location.city;
-
-        // Filter the result to find similar houses
         const similarHouses = result.filter(item => {
+            console.log(item.location.city)
+            console.log(houseData[0].location.city)
+            console.log(item.location.street)
+            console.log(item.id)
+            console.log(houseData[0].id)
             return (
-                (item.location.street === currentStreet || item.location.city === currentCity ) &&
-                item.id !== houseId
+                (item.location.street == houseData[0].location.street || item.location.city == houseData[0].location.city ) 
+                && item.id !== houseId
             );
         });
 
-        // Display the recommended houses
+        // recommendedHousesList.innerHTML = '';      ----?----
+
         similarHouses.forEach(item => {
 
             const {
@@ -193,45 +191,43 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
                 bedrooms,
             } = rooms;
 
+            const listItems = document.createElement('li');
+            listItems.classList.add('recommended-item');
 
-            // Create the recommended house item
-            const listItem = document.createElement('li');
-            listItem.classList.add('recommended-item');
-
-            const houseImage = document.createElement('div');
-            houseImage.classList.add('recommended-image');
-            houseImage.innerHTML = `
+            const houseImages = document.createElement('div');
+            houseImages.classList.add('recommended-image');
+            houseImages.innerHTML = `
                 <img src="${image}" alt="Image of the house">
             `;
 
-            const houseInfo = document.createElement('div');
-            houseInfo.classList.add('recommended-info');
+            const houseInfos = document.createElement('div');
+            houseInfos.classList.add('recommended-info');
 
-            const houseModify = document.createElement('div');
-            houseModify.classList.add('recommended-modify');
+            const houseModifys = document.createElement('div');
+            houseModifys.classList.add('recommended-modify');
 
-            const streetName = document.createElement('div');
-            streetName.classList.add('recommended-streetname');
-            streetName.innerHTML = `
+            const streetNames = document.createElement('div');
+            streetNames.classList.add('recommended-streetname');
+            streetNames.innerHTML = `
                 ${street}
                 ${houseNumber}
                 ${houseNumberAddition}
             `;
 
-            const priceHouse = document.createElement('div');
-            priceHouse.classList.add('recommended-price');
-            priceHouse.innerHTML = `&euro; ${price.toLocaleString('nl-NL')}`;
+            const priceHouses = document.createElement('div');
+            priceHouses.classList.add('recommended-price');
+            priceHouses.innerHTML = `&euro; ${price.toLocaleString('nl-NL')}`;
 
-            const addressHouse = document.createElement('div');
-            addressHouse.classList.add('recommended-address');
-            addressHouse.innerHTML = `
+            const addressHouses = document.createElement('div');
+            addressHouses.classList.add('recommended-address');
+            addressHouses.innerHTML = `
                 ${zip}
                 ${city}
             `;
 
-            const detailsHouse = document.createElement('div');
-            detailsHouse.classList.add('recommended-details');
-            detailsHouse.innerHTML = `
+            const detailsHouses = document.createElement('div');
+            detailsHouses.classList.add('recommended-details');
+            detailsHouses.innerHTML = `
                 <img src="../images/ic_bed@3x.png" alt="bedrooms">
                 ${bedrooms}
                 <img src="../images/ic_bath@3x.png" alt="bedrooms">
@@ -240,17 +236,17 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
                 ${size} m&sup2;
             `;
 
-            listItem.addEventListener('click', () => {
+            listItems.addEventListener('click', () => {
                 window.location.href = `house.html?houseId=${id}`;
             });
 
-            houseInfo.appendChild(streetName);
-            houseInfo.appendChild(priceHouse);
-            houseInfo.appendChild(addressHouse);
-            houseInfo.appendChild(detailsHouse);
-            listItem.appendChild(houseImage);
-            listItem.appendChild(houseInfo);
-            recommendedHousesList.appendChild(listItem);
+            houseInfos.appendChild(streetNames);
+            houseInfos.appendChild(priceHouses);
+            houseInfos.appendChild(addressHouses);
+            houseInfos.appendChild(detailsHouses);
+            listItems.appendChild(houseImages);
+            listItems.appendChild(houseInfos);
+            recommendedHousesList.appendChild(listItems);
 
         });
 

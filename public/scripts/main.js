@@ -90,8 +90,12 @@ fetch("https://api.intern.d-tt.nl/api/houses", requestOptions)
         houseEdit.innerHTML = `
             <img src="../images/ic_edit@3x.png" alt="Edit house">
         `;
-        houseEdit.addEventListener('click', () => {
-            window.location.href = `edit.html?houseId=${id}`;
+        // houseEdit.addEventListener('click', () => {
+        //     window.location.href = `edit.html?houseId=${id}`;
+        // });
+        houseEdit.addEventListener('click', (event) => {
+          event.stopPropagation(); 
+          window.location.href = `edit.html?houseId=${id}`;
         });
 
         const houseDelete = document.createElement('a');
@@ -148,10 +152,6 @@ fetch("https://api.intern.d-tt.nl/api/houses", requestOptions)
     function displayResults(results) {
       housesList.innerHTML = '';
 
-
-    //   houseDelete.innerHTML = `
-    //         <img src="../images/ic_delete@3x.png" alt="Delete house">
-    //     `;
 
       if (results.length === 0) {
         const noResults = document.createElement('div');
