@@ -141,7 +141,7 @@ header .not-active {
   border-radius: 5px;
   margin-bottom: 16px;
   display: flex;
-  align-items: stretch;
+  align-items: start;
   margin-left: 0;
 }
 
