@@ -129,9 +129,25 @@ npm run dev -- --port 8080
     <td>1</td>
     <td>24/06/2023</td>
   </tr>
+
+  <tr>
+    <td>General styling Detail page</td>
+    <td>0,5</td>
+    <td>25/06/2023</td>
+  </tr>
+  <tr>
+    <td>Implement popup when Delete is clicked on Detail page</td>
+    <td>0,75</td>
+    <td>25/06/2023</td>
+  </tr>
+  <tr>
+    <td>Implement delete listing when Delete button is clicked</td>
+    <td>1</td>
+    <td>25/06/2023</td>
+  </tr>
   <tr>
     <td></td>
-    <td>17,25</td>
+    <td>19,5</td>
     <td></td>
   </tr>
 </table>
