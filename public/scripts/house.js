@@ -7,7 +7,7 @@ var showHouse = {
     redirect: 'follow'
 };
 
-const houseId = new URLSearchParams(window.location.search).get('houseId'); 
+const houseId = new URLSearchParams(window.location.search).get('houseId');
 
 fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
     .then(response => response.json())
@@ -62,7 +62,7 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
             const houseModify = document.createElement('div');
             houseModify.classList.add('house-modify');
 
-            const streetName = document.createElement('div');
+            const streetName = document.createElement('h2');
             streetName.classList.add('house-streetname');
             streetName.innerHTML = `
                 ${street}
@@ -120,7 +120,7 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
                 const houseEdit = document.createElement('a');
                 houseEdit.classList.add('house-edit');
                 houseEdit.innerHTML = `
-                    <img src="../images/ic_edit@3x.png" alt="edit">
+                  <img src="../images/ic_edit@3x.png" alt="edit">
                 `;
                 houseEdit.addEventListener('click', () => {
                     window.location.href = `edit.html?houseId=${id}`;
@@ -129,11 +129,70 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
                 const houseDelete = document.createElement('a');
                 houseDelete.classList.add('house-delete');
                 houseDelete.innerHTML = `
-                    <img src="../images/ic_delete@3x.png" alt="delete">
+                  <img src="../images/ic_delete@3x.png" alt="delete">
                 `;
+                houseDelete.addEventListener('click', popupDelete);
+
+                const overlay = document.createElement('div');
+                overlay.classList.add('house-overlay');
+
+                document.body.appendChild(overlay);
 
                 houseModify.appendChild(houseEdit);
                 houseModify.appendChild(houseDelete);
+            }
+
+            function popupDelete() {
+                const overlay = document.querySelector(".house-overlay");
+                const popup = document.getElementById("deletePopup");
+
+                overlay.classList.add("show");
+                popup.classList.add("show");
+
+                const deleteButton = document.createElement('button');
+                deleteButton.classList.add('deleteButton');
+                deleteButton.innerHTML = `
+                  YES, DELETE
+                `;
+                deleteButton.addEventListener('click', deleteListing);
+                popup.appendChild(deleteButton);
+
+                function deleteListing() {
+                    const headers = new Headers();
+                    headers.append('X-Api-Key', '0D2payThq_sfnNlBtRod15V3ZMAckuQw');
+
+                    const requestOptions = {
+                        method: 'DELETE',
+                        headers: headers,
+                        redirect: 'follow'
+                    };
+
+                    fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, requestOptions)
+                        .then(response => {
+                            if (response.ok) {
+                                console.log('Listing deleted successfully');
+                            } else {
+                                console.log('Failed to delete the listing');
+                            }
+                        })
+                        .catch(error => console.log('Error:', error));
+
+                    overlay.classList.remove('show');
+                    popup.classList.remove('show');
+                }
+
+                const gobackButton = document.createElement('button');
+                gobackButton.classList.add('gobackButton');
+                gobackButton.innerHTML = `
+                  GO BACK
+                `;
+                gobackButton.addEventListener('click', goBack);
+                popup.appendChild(gobackButton);
+
+                function goBack() {
+                    overlay.classList.remove("show");
+                    popup.classList.remove("show");
+                }
             }
 
             iets.appendChild(streetName);
@@ -149,8 +208,6 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
 
         });
 
-        // ...
-
         const recommendedHousesList = document.getElementById('recommended_houses');
 
         const similarHouses = result.filter(item => {
@@ -160,8 +217,8 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
             console.log(item.id)
             console.log(houseData[0].id)
             return (
-                (item.location.street == houseData[0].location.street || item.location.city == houseData[0].location.city ) 
-                && item.id !== houseId
+                (item.location.street == houseData[0].location.street || item.location.city == houseData[0].location.city) &&
+                item.id !== houseId
             );
         });
 
