@@ -1,22 +1,25 @@
-var myHeaders = new Headers();
-myHeaders.append("X-Api-Key", "0D2payThq_sfnNlBtRod15V3ZMAckuQw");
+var houseHeaders = new Headers();
+houseHeaders.append("X-Api-Key", "0D2payThq_sfnNlBtRod15V3ZMAckuQw");
 
-var showHouse = {
+var houseOptions = {
     method: 'GET',
-    headers: myHeaders,
+    headers: houseHeaders,
     redirect: 'follow'
 };
 
 const houseId = new URLSearchParams(window.location.search).get('houseId');
 
-fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
+// Fetch details of a specific house using houseId
+fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, houseOptions)
     .then(response => response.json())
     .then(result => {
         console.log(result);
         const houseData = result;
 
+        // Get element for displaying single house details
         const housesList = document.getElementById('single_house');
 
+        // Iterate through each house item in result
         houseData.forEach(item => {
             const {
                 id,
@@ -44,6 +47,7 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
                 bedrooms,
             } = rooms;
 
+            // Create elements to represent house items in the list
             const houseItem = document.createElement('li');
             houseItem.classList.add('house-item');
 
@@ -56,15 +60,15 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
             const houseInfo = document.createElement('div');
             houseInfo.classList.add('house-info');
 
-            const iets = document.createElement('div');
-            iets.classList.add('house-iets');
+            const houseTitel = document.createElement('div');
+            houseTitel.classList.add('house-streetandmodify');
 
             const houseModify = document.createElement('div');
             houseModify.classList.add('house-modify');
 
-            const streetName = document.createElement('h2');
-            streetName.classList.add('house-streetname');
-            streetName.innerHTML = `
+            const streetHouse = document.createElement('h2');
+            streetHouse.classList.add('house-streetname');
+            streetHouse.innerHTML = `
                 ${street}
                 ${houseNumber}
                 ${houseNumberAddition}
@@ -115,8 +119,9 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
             const houseDelete = document.createElement('div');
             houseDelete.classList.add('house-delete');
 
-
+            // Check if house is created by the current user (madeByMe)
             if (madeByMe == true) {
+                // Create edit and delete buttons for user's own listings
                 const houseEdit = document.createElement('a');
                 houseEdit.classList.add('house-edit');
                 houseEdit.innerHTML = `
@@ -133,6 +138,7 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
                 `;
                 houseDelete.addEventListener('click', popupDelete);
 
+                // Create overlay over full body, for delete confirmation popup
                 const overlay = document.createElement('div');
                 overlay.classList.add('house-overlay');
 
@@ -142,6 +148,7 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
                 houseModify.appendChild(houseDelete);
             }
 
+            // Function to display delete confirmation popup
             function popupDelete() {
                 const overlay = document.querySelector(".house-overlay");
                 const popup = document.getElementById("deletePopup");
@@ -157,17 +164,18 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
                 deleteButton.addEventListener('click', deleteListing);
                 popup.appendChild(deleteButton);
 
+                // Function to delete listing
                 function deleteListing() {
-                    const headers = new Headers();
-                    headers.append('X-Api-Key', '0D2payThq_sfnNlBtRod15V3ZMAckuQw');
+                    const deleteHeaders = new Headers();
+                    deleteHeaders.append('X-Api-Key', '0D2payThq_sfnNlBtRod15V3ZMAckuQw');
 
-                    const requestOptions = {
+                    const deleteOptions = {
                         method: 'DELETE',
-                        headers: headers,
+                        headers: deleteHeaders,
                         redirect: 'follow'
                     };
 
-                    fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, requestOptions)
+                    fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, deleteOptions)
                         .then(response => {
                             if (response.ok) {
                                 console.log('Listing deleted successfully');
@@ -177,10 +185,12 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
                         })
                         .catch(error => console.log('Error:', error));
 
+                    // Remove popup from screen
                     overlay.classList.remove('show');
                     popup.classList.remove('show');
                 }
 
+                // Create button to go back from popup
                 const gobackButton = document.createElement('button');
                 gobackButton.classList.add('gobackButton');
                 gobackButton.innerHTML = `
@@ -189,15 +199,16 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
                 gobackButton.addEventListener('click', goBack);
                 popup.appendChild(gobackButton);
 
+                // Remove popup from screen and go back to page
                 function goBack() {
                     overlay.classList.remove("show");
                     popup.classList.remove("show");
                 }
             }
 
-            iets.appendChild(streetName);
-            iets.appendChild(houseModify);
-            houseInfo.appendChild(iets);
+            houseTitel.appendChild(streetHouse);
+            houseTitel.appendChild(houseModify);
+            houseInfo.appendChild(houseTitel);
             houseInfo.appendChild(addressHouse);
             houseInfo.appendChild(priceHouse);
             houseInfo.appendChild(detailsHouse);
@@ -208,8 +219,10 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
 
         });
 
+        // Get recommended houses list element
         const recommendedHousesList = document.getElementById('recommended_houses');
 
+        // Filter out similar houses based on location, exclude the current house
         const similarHouses = result.filter(item => {
             console.log(item.location.city)
             console.log(houseData[0].location.city)
@@ -222,10 +235,8 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
             );
         });
 
-        // recommendedHousesList.innerHTML = '';      ----?----
-
+        // Loop through similar houses and create elements to display them
         similarHouses.forEach(item => {
-
             const {
                 id,
                 image,
@@ -293,6 +304,7 @@ fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, showHouse)
                 ${size} m&sup2;
             `;
 
+            // Redirect to selected house when clicked
             listItems.addEventListener('click', () => {
                 window.location.href = `house.html?houseId=${id}`;
             });
