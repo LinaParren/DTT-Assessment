@@ -39,16 +39,11 @@ h2 {
   font-size: 22px;
 }
 
-/* h3 {
-  font-size: 18px;
-} */
-
 button {
   font-size: 18px;
   color: white;
   border: none;
   border-radius: 5px;
-  /* width: 10vw; */
   padding-top: 16px;
   padding-bottom: 16px;
   padding-left: 56px;
@@ -105,8 +100,6 @@ header .not-active {
   border-radius: 5px;
   padding: 16px;
   width: 40%;
-  /* display: flex;
-  align-items: center; */
 }
 
 .page_home .search input::placeholder {
@@ -118,8 +111,21 @@ header .not-active {
   background-repeat: no-repeat;
   background-position: left center;
   background-size: 16px;
-  padding-left: 32px; /* Adjust the padding as needed */
-  /* margin: 20px; */
+  padding-left: 32px;
+}
+
+.page_home .no_results {
+  font-family: 'Montserrat', sans-serif;
+  color: #4A4B4C;  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page_home .no_results img {
+  display: flex;
+  width: 320px;
+  margin: 48px;
 }
 
 .borange {
@@ -149,13 +155,11 @@ header .not-active {
   padding: 0;
 }
 
-/* li */
 .page_home .house-item {
   margin-bottom: 20px;
   padding: 16px;
 }
 
-/* de div met de img */
 .page_home .house-image {
   width: 15%;
   display: flex;
@@ -170,12 +174,10 @@ header .not-active {
   border-radius: 8px;
 }
 
-/* de div met de adress etc. */
 .page_home .house-info {
   width: 20%;
 }
 
-/* de div met edit */
 .page_home .house-modify {
   width: 65%;
   display: flex;
@@ -192,8 +194,6 @@ header .not-active {
   margin: 8px;
 }
 
-
-/* div info straat etc*/
 .page_home .house-streetname {
   font-weight: bold;
   display: flex;
@@ -211,7 +211,6 @@ header .not-active {
   margin-bottom: 16px;
 }
 
-/* div info kamers etc*/
 .page_home .house-details {
   color: #4A4B4C;
   display: flex;
@@ -285,10 +284,7 @@ header .not-active {
 
 #editForm button {
   display: flex;
-  /* align-content: end; */
   justify-content: flex-end;
-  /* align-items: end; */
-  /* margin-right: 0; */
   margin-bottom: 32px;
 }
 
@@ -298,9 +294,6 @@ header .not-active {
 .page_create {
   margin-top: 32px;
   font-family: 'Open Sans', sans-serif;
-  /* background: url(../images/img_background@3x.png);
-  background-repeat: no-repeat;
-  background-size: cover; */
   margin-bottom: 16px;
 }
 
@@ -356,26 +349,16 @@ header .not-active {
 
 #createForm button {
   display: flex;
-  /* align-content: end; */
   justify-content: flex-end;
-  /* align-items: end; */
-  /* margin-right: 0; */
   margin-bottom: 32px;
 }
-
-
-
 
 
 /* PAGE_HOUSE *//* PAGE_HOUSE *//* PAGE_HOUSE *//* PAGE_HOUSE *//* PAGE_HOUSE *//* PAGE_HOUSE */
 
 .page_house {
-  /* font-family: 'Open Sans', sans-serif; */
   font-family: monospace;
   color: #4A4B4C;
-  /* background-color: white;
-  box-shadow: 0 0 5px 1px #E8E8E8;
-  border-radius: 5px; */
   padding-top: 32px;
   margin-bottom: 16px;
   display: flex;
@@ -404,7 +387,6 @@ header .not-active {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* color: #4A4B4C; */
 }
 
 .page_house h2 {
@@ -413,7 +395,6 @@ header .not-active {
 }
 
 .page_house #single_house {
-  /* color: #4A4B4C; */
   width: 55%;
   background-color: white;
 }
@@ -422,33 +403,25 @@ header .not-active {
   margin-bottom: 20px;
 }
 
-/* de div met de img */
 .page_house .house-image {
   width: 100%;
 }
 
 .page_house .house-image img {
-  /* margin-right: 16px; */
-  /* width: 150px;
-  height: 150px; */
   width: 100%;
   object-fit: cover;
-  /* border-radius: 8px; */
 }
 
-/* de div met de adress etc. */
 .page_house .house-info {
   padding: 16px;
 }
 
-.page_house .house-iets {
+.page_house .house-streetandmodify {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* width: 100%; */
 }
 
-/* de div met edit */
 .page_house .house-modify {
   display: flex;
 }
@@ -463,8 +436,6 @@ header .not-active {
   margin: 8px;
 }
 
-
-/* div info straat etc*/
 .page_house .house-streetname {
   font-weight: bold;
   font-size: 32px;
@@ -473,12 +444,10 @@ header .not-active {
 }
 
 .page_house .house-price {
-  /* color: #4A4B4C; */
   margin-bottom: 16px;
   max-width: 60%;
   display: flex;
   gap: 16px;
-  /* justify-content: space-between; */
   align-items: center;
 }
 
@@ -488,7 +457,6 @@ header .not-active {
 }
 
 .page_house .house-address {
-  /* color: #C3C3C3; */
   display: flex;
   gap: 16px;
   align-items: center;
@@ -496,13 +464,10 @@ header .not-active {
 }
 
 .page_house .house-address img {
-  /* width: 16px; */
   height: 16px;
 }
 
-/* div info kamers etc*/
 .page_house .house-details {
-  /* color: #4A4B4C; */
   display: flex;
   gap: 16px;
   align-items: center;
@@ -517,9 +482,6 @@ header .not-active {
   margin-top: 16px;
 }
 
-
-/* ----------------------------- */
-
 .page_house .recommended {
   width: 40%;
 }
@@ -532,7 +494,6 @@ header .not-active {
   margin-bottom: 16px;
   display: flex;
   flex-direction: row;
-  /* align-items: stretch; */
   margin-left: 0;
 }
 
@@ -540,14 +501,12 @@ header .not-active {
   padding: 0;
 }
 
-/* li */
 .page_house .recommended-item {
   margin-bottom: 20px;
   padding: 16px;
   gap: 16px;
 }
 
-/* de div met de img */
 .page_house .recommended-image {
   width: 35%;
   display: flex;
@@ -562,15 +521,12 @@ header .not-active {
   border-radius: 8px;
 }
 
-
-/* de div met edit */
 .page_house .recommended-modify {
   width: 65%;
   display: flex;
   justify-content: end;
 }
 
-/* div info straat etc*/
 .page_house .recommended-streetname {
   font-weight: bold;
   display: flex;
@@ -589,7 +545,6 @@ header .not-active {
   margin-bottom: 16px;
 }
 
-/* div info kamers etc*/
 .page_house .recommended-details {
   color: #4A4B4C;
   display: flex;
@@ -602,30 +557,7 @@ header .not-active {
   height: 16px;
 }
 
-/* ----------------------------- */
-
-
-
-
-.no_results {
-  font-family: 'Montserrat', sans-serif;
-  color: #4A4B4C;  
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.no_results img {
-  display: flex;
-  width: 320px;
-  margin: 48px;
-}
-
-
-
-
-
-.house-overlay {
+.page_house .house-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -636,7 +568,7 @@ header .not-active {
   visibility: hidden;
 }
 
-.deletePopup {
+.page_house .deletePopup {
   visibility: hidden;
   position: fixed;
   top: 50%;
@@ -658,12 +590,13 @@ header .not-active {
   align-items: center;
 }
 
-.deletePopup button {
+.page_house .deletePopup button {
   width: 50%;
   margin: 16px;
   
 }
 
-.show {
+.page_house .show {
   visibility: visible;
 }
+

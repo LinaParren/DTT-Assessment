@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    // Event listener for 'submit' event on createForm
     document.getElementById('createForm').addEventListener('submit', function (event) {
         event.preventDefault();
 
+        // Get data for the items from API
         const newHouse = {
             location: {
                 street: document.getElementById('createstreet').value,
@@ -23,24 +25,27 @@ document.addEventListener('DOMContentLoaded', function () {
             description: document.getElementById('createdescription').value,
         };
 
+        // Call createListing function with newHouse object
         createListing(newHouse);
     });
 
     function createListing(newHouse) {
-        newHouse.madeByMe = true; // Set the madeByMe property to true
+        // Set madeByMe automatically to true
+        newHouse.madeByMe = true;
 
-        var saveHeaders = new Headers();
-        saveHeaders.append("X-Api-Key", "0D2payThq_sfnNlBtRod15V3ZMAckuQw");
-        saveHeaders.append("Content-Type", "application/json");
+        var createHeaders = new Headers();
+        createHeaders.append("X-Api-Key", "0D2payThq_sfnNlBtRod15V3ZMAckuQw");
+        createHeaders.append("Content-Type", "application/json");
 
-        var saveOptions = {
+        var createOptions = {
             method: 'POST',
-            headers: saveHeaders,
-            body: JSON.stringify(newHouse),
+            headers: createHeaders,
+            body: JSON.stringify(newHouse), // Convert the newHouse object to JSON string
             redirect: 'follow'
         };
 
-        fetch('https://api.intern.d-tt.nl/api/houses', saveOptions)
+        // Send POST request to specified URL with the createOptions
+        fetch('https://api.intern.d-tt.nl/api/houses', createOptions)
             .then(response => response.json())
             .then(result => {
                 console.log(result);

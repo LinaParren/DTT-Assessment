@@ -1,39 +1,41 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+  // Check houseId as correct data needs to be loaded when editing a listing
   const houseId = new URLSearchParams(window.location.search).get('houseId');
   populateFormWithHouseData(houseId);
 
   console.log(houseId);
 
+  // Event listener for 'submit' event on editForm
   document.getElementById('editForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const houseId = new URLSearchParams(window.location.search).get('houseId');
-
-    const updatedHouse = {
-      price: document.getElementById('inputprice').value,
-      size: document.getElementById('inputsize').value,
-      hasGarage: document.getElementById('inputgarage').value,
-      constructionYear: document.getElementById('inputconstructiondate').value.split('-')[0],
-      description: document.getElementById('inputdescription').value,
+    // Get data for the items from API
+    const editHouse = {
+      price: document.getElementById('editprice').value,
+      size: document.getElementById('editsize').value,
+      hasGarage: document.getElementById('editgarage').value,
+      constructionYear: document.getElementById('editconstructiondate').value.split('-')[0],
+      description: document.getElementById('editdescription').value,
       location: {
-        street: document.getElementById('inputstreet').value,
-        houseNumber: parseInt(document.getElementById('inputhousenumber').value),
-        houseNumberAddition: document.getElementById('inputhousenumberaddition').value,
-        city: document.getElementById('inputcity').value,
-        zip: document.getElementById('inputzip').value
+        street: document.getElementById('editstreet').value,
+        houseNumber: parseInt(document.getElementById('edithousenumber').value),
+        houseNumberAddition: document.getElementById('edithousenumberaddition').value,
+        city: document.getElementById('editcity').value,
+        zip: document.getElementById('editzip').value
       },
       rooms: {
-        bedrooms: parseInt(document.getElementById('inputbedrooms').value),
-        bathrooms: parseInt(document.getElementById('inputbathrooms').value)
+        bedrooms: parseInt(document.getElementById('editbedrooms').value),
+        bathrooms: parseInt(document.getElementById('editbathrooms').value)
       },
-      image: document.getElementById('inputimage').value // Add the image field
+      image: document.getElementById('editimage').value
     };
 
-    saveChanges(houseId, updatedHouse);
+    // Call saveEdit function with houseId and editHouse object
+    saveEdit(houseId, editHouse);
   });
 
-  function saveChanges(houseId, data) {
+  function saveEdit(houseId, editHouse) {
     var saveHeaders = new Headers();
     saveHeaders.append("X-Api-Key", "0D2payThq_sfnNlBtRod15V3ZMAckuQw");
     saveHeaders.append("Content-Type", "application/json");
@@ -41,10 +43,11 @@ document.addEventListener('DOMContentLoaded', function () {
     var saveOptions = {
       method: 'PUT',
       headers: saveHeaders,
-      body: JSON.stringify(data),
+      body: JSON.stringify(editHouse),
       redirect: 'follow'
     };
 
+    // Send PUT request to update specified houseId with editHouse data
     fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, saveOptions)
       .then(response => response.json())
       .then(result => {
@@ -54,34 +57,37 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 })
 
+// Function to populate editForm with data of specified houseId
 function populateFormWithHouseData(houseId) {
-  var headers = new Headers();
-  headers.append("X-Api-Key", "0D2payThq_sfnNlBtRod15V3ZMAckuQw");
+  var formHeaders = new Headers();
+  formHeaders.append("X-Api-Key", "0D2payThq_sfnNlBtRod15V3ZMAckuQw");
 
-  var options = {
+  var formOptions = {
     method: 'GET',
-    headers: headers,
+    headers: formHeaders,
     redirect: 'follow'
   };
 
-  fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, options)
+  // Send GET request to retrieve data of specified houseId
+  fetch(`https://api.intern.d-tt.nl/api/houses/${houseId}`, formOptions)
     .then(response => response.json())
     .then(data => {
       console.log(data);
       const house = data[0];
-      document.getElementById('inputstreet').value = house.location.street;
-      document.getElementById('inputhousenumber').value = house.location.houseNumber;
-      document.getElementById('inputhousenumberaddition').value = house.location.houseNumberAddition;
-      document.getElementById('inputzip').value = house.location.zip;
-      document.getElementById('inputcity').value = house.location.city;
-      document.getElementById('inputimage').value = house.image;
-      document.getElementById('inputprice').value = house.price;
-      document.getElementById('inputsize').value = house.size;
-      document.getElementById('inputgarage').value = house.hasGarage ? 'yes' : 'no'; // Set the selected option based on hasGarage value
-      document.getElementById('inputbedrooms').value = house.rooms.bedrooms;
-      document.getElementById('inputbathrooms').value = house.rooms.bathrooms;
-      document.getElementById('inputconstructiondate').value = `${house.constructionYear}`;
-      document.getElementById('inputdescription').value = house.description;
+      // Populate form fields with correct house data
+      document.getElementById('editstreet').value = house.location.street;
+      document.getElementById('edithousenumber').value = house.location.houseNumber;
+      document.getElementById('edithousenumberaddition').value = house.location.houseNumberAddition;
+      document.getElementById('editzip').value = house.location.zip;
+      document.getElementById('editcity').value = house.location.city;
+      document.getElementById('editimage').value = house.image;
+      document.getElementById('editprice').value = house.price;
+      document.getElementById('editsize').value = house.size;
+      document.getElementById('editgarage').value = house.hasGarage ? 'yes' : 'no'; // Convert boolean value to 'yes' or 'no'
+      document.getElementById('editbedrooms').value = house.rooms.bedrooms;
+      document.getElementById('editbathrooms').value = house.rooms.bathrooms;
+      document.getElementById('editconstructiondate').value = `${house.constructionYear}`; // Convert to string
+      document.getElementById('editdescription').value = house.description;
     })
     .catch(error => console.log('error', error));
 }
